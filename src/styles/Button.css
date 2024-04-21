@@ -1,0 +1,22 @@
+.button-div{
+    background-color: #007bff;
+    width: 15vw;
+    height: 10vh;
+	border-radius: 10px;
+	border: 1px solid #007bff;
+	color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+	cursor: pointer;
+    font-size: 1.5vw;
+    /* border: 1px black solid; */
+	transition: transform 0.1s ease-in-out;
+    box-shadow: black -5px 5px;
+}
+
+.button-div:active{
+    transform: translate(-5px, 5px);
+    background-color: blue  ;
+}
