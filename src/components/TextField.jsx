@@ -13,7 +13,6 @@ export default function TextField(props) {
 
     return (
         <div className='text-root'>
-            <h1>Text To Speech</h1>
             <textarea className="text-field" placeholder="Type something here..." value={text} onChange={handleChange} />
         </div>
     );

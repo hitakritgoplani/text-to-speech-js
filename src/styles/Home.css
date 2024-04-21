@@ -1,5 +1,11 @@
 .home-root{
+    max-height: 95vh;
     background-color: #FFF9EC;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5vh;
 }
 
 .buttons{

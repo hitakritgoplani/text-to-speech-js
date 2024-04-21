@@ -66,6 +66,7 @@ export default function Home() {
 
     return (
         <div className='home-root'>
+            <h1>Text To Speech</h1>
             <TextField onTextChange={handleTextChange} />
             <div className='buttons'>
                 <Button onClickPress={toggleSpeaking} name={isSpeaking ? "Pause" : "Play"} /> {/* Dynamically change button name based on speaking state */}
