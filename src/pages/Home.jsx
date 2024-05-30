@@ -70,7 +70,6 @@ export default function Home() {
             <TextField onTextChange={handleTextChange} />
             <div className='buttons'>
                 <Button onClickPress={toggleSpeaking} name={isSpeaking ? "Pause" : "Play"} /> {/* Dynamically change button name based on speaking state */}
-                <Button as="span" name="Add text from a file" />
             </div>
         </div>
     );
