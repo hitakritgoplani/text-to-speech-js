@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TextField from '../components/TextField';
 import '../styles/Home.css';
 import Button from '../components/Button';
-import Speech from 'speak-tts'
+import Speech from 'speak-tts';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
     const [text, setText] = useState('');
@@ -15,37 +17,38 @@ export default function Home() {
     };
 
     const playText = async () => {
-
+        // Function left unchanged for now
     };
 
     const toggleSpeaking = () => {
+        if (!text.trim()) {
+            toast.error("No text available! Please enter text to play.");
+            return;
+        }
+
         if (!isSpeaking && firstLine) {
             setIsSpeaking(true);
-            console.log()
-            speech.cancel()
+            speech.cancel();
             speech.speak({
                 text: text.split(' ')[0],
             }).then(() => {
-                console.log("Success !");
-                // Update state to indicate speech is playing
+                console.log("Success!");
             }).catch(e => {
-                console.error("An error occurred :", e)
-            })
-            setFirstLine(false)
+                console.error("An error occurred: ", e);
+            });
+            setFirstLine(false);
             speech.speak({
                 text: text.substring(text.indexOf(' ') + 1),
             }).then(() => {
-                console.log("Success !");
-                // Update state to indicate speech is playing
+                console.log("Success!");
             }).catch(e => {
-                console.error("An error occurred :", e)
-            })
-        } else if(isSpeaking && !firstLine) {
+                console.error("An error occurred: ", e);
+            });
+        } else if (isSpeaking && !firstLine) {
             speech.pause();
-            setIsSpeaking(false); // Update state to indicate speech is resumed
-        }
-        else{
-            setIsSpeaking(true)
+            setIsSpeaking(false); // Update state to indicate speech is paused
+        } else {
+            setIsSpeaking(true);
             speech.resume();
         }
     };
@@ -54,11 +57,10 @@ export default function Home() {
         if (speech.hasBrowserSupport()) {
             console.log("Speech synthesis supported");
             speech.init().then((data) => {
-                // The "data" object contains the list of available voices and the voice synthesis params
-                console.log("Speech is ready, voices are available", data)
+                console.log("Speech is ready, voices are available", data);
             }).catch(e => {
-                console.error("An error occured while initializing : ", e)
-            })
+                console.error("An error occurred while initializing: ", e);
+            });
         } else {
             console.log("Speech synthesis not supported");
         }
@@ -66,10 +68,11 @@ export default function Home() {
 
     return (
         <div className='home-root'>
+            <ToastContainer />
             <h1>Text To Speech</h1>
             <TextField onTextChange={handleTextChange} />
             <div className='buttons'>
-                <Button onClickPress={toggleSpeaking} name={isSpeaking ? "Pause" : "Play"} /> {/* Dynamically change button name based on speaking state */}
+                <Button onClickPress={toggleSpeaking} name={isSpeaking ? "Pause" : "Play"} />
             </div>
         </div>
     );
