@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <div className='home-root'>
       <ToastContainer />
-      <h1>Speak Aloud</h1>
+      <h1>Text Aloud</h1>
       <TextField onTextChange={handleTextChange} />
       <div className='buttons'>
         <Button onClickPress={toggleSpeaking} name={getButtonText()} />
